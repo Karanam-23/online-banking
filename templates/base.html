@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinTrix — Online Banking</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <nav class="bg-white shadow">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="https://raw.githubusercontent.com/Karanam-23/online-banking/main/static/assets/logo.png" class="h-10" alt="logo" />
+        <span class="font-semibold text-lg">FinTrix</span>
+      </div>
+      <div>
+        {% if current_user.is_authenticated %}
+          <a href="{{ url_for('dashboard') }}" class="mr-4">Dashboard</a>
+          <a href="{{ url_for('transactions') }}" class="mr-4">Transactions</a>
+          <a href="{{ url_for('transfer') }}" class="mr-4">Transfer</a>
+          <a href="{{ url_for('virtual_card') }}" class="mr-4">Virtual Card</a>
+          <a href="{{ url_for('logout') }}" class="text-red-600">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}" class="mr-4">Login</a>
+          <a href="{{ url_for('register') }}" class="bg-blue-600 text-white px-3 py-1 rounded">Sign up</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-4 py-8">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for cat, msg in messages %}
+          <div class="mb-4 p-3 rounded {{ 'bg-green-100' if cat=='success' else 'bg-red-100' }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
