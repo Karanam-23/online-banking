@@ -1,17 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-<h3 class="text-xl mb-4">Admin Dashboard</h3>
-<div class="bg-white p-4 rounded shadow">
-  <table class="w-full">
-    <thead><tr><th>User</th><th>Email</th><th>Accounts</th></tr></thead>
+<h2 class="h2 mb-4">Admin Dashboard</h2>
+
+<div class="card">
+  <table class="table">
+    <thead>
+      <tr><th>User</th><th>Email</th><th>Accounts</th></tr>
+    </thead>
     <tbody>
       {% for u in users %}
-        <tr class="border-t">
-          <td>{{ u.name }}</td><td>{{ u.email }}</td>
-          <td>
-            {% for a in u.accounts %} {{ a.number }} (₹{{ "%.2f"|format(a.balance) }}) <br> {% endfor %}
-          </td>
-        </tr>
+      <tr>
+        <td>{{ u.name }}</td>
+        <td>{{ u.email }}</td>
+        <td>
+          {% for a in u.accounts %}
+            <div class="small">{{ a.number }} — ₹{{ '%.2f'|format(a.balance) }}</div>
+          {% endfor %}
+        </td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>
