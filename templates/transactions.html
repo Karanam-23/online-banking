@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-xl mb-4">Transactions</h3>
+<div class="bg-white rounded shadow p-4">
+  <table class="w-full">
+    <thead>
+      <tr class="text-left text-sm text-gray-600">
+        <th>Date</th><th>Account</th><th>Type</th><th>Amount</th><th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in txs %}
+      <tr class="border-t">
+        <td class="py-2">{{ t.created_at }}</td>
+        <td>{{ t.account.number }}</td>
+        <td>{{ t.type }}</td>
+        <td class="{{ 'text-red-600' if t.amount<0 else 'text-green-600' }}">₹{{ "%.2f"|format(t.amount) }}</td>
+        <td>{{ t.note }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="mt-4">
+    <a href="{{ url_for('export_csv') }}" class="bg-blue-600 text-white px-3 py-1 rounded">Export CSV</a>
+  </div>
+</div>
+{% endblock %}
