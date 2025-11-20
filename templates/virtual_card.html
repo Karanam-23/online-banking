@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-xl mb-4">Virtual Cards</h3>
+<div class="grid grid-cols-1 gap-4">
+  <div class="bg-white p-4 rounded shadow">
+    <form method="post">
+      <button class="bg-green-600 text-white px-3 py-2 rounded">Create Virtual Card</button>
+    </form>
+  </div>
+  {% for c in cards %}
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 rounded shadow">
+      <div class="font-bold">{{ c.number }}</div>
+      <div class="text-sm">Expiry: {{ c.expiry }} • CVV: {{ c.cvv }}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
