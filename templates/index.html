@@ -1,33 +1,54 @@
 {% extends "base.html" %}
 {% block content %}
-
 <div class="grid md:grid-cols-2 gap-8 items-center">
-
   <div>
-    <h1 class="text-4xl font-bold mb-4 text-blue-700">Secure. Fast. Smart Banking.</h1>
-    <p class="mb-6 text-gray-600 text-lg">
-      Experience a modern online banking system featuring virtual cards, scheduled transfers,
-      real-time transaction history and a clean intuitive interface.
+    <h1 class="h1">FinTrix — Banking, reimagined.</h1>
+    <p class="muted mt-4">
+      Premium-grade online banking with virtual cards, scheduled transfers, fraud alerts and crystal clear transaction insights.
+      Built for test & demo — deploy to Render in minutes.
     </p>
 
-    <a href="{{ url_for('register') }}" class="inline-block px-4 py-2 bg-blue-600 text-white rounded text-lg shadow">
-      Get Started
-    </a>
-  </div>
+    <div class="mt-6 flex gap-3">
+      <a class="btn btn-primary" href="{{ url_for('register') }}">Create account</a>
+      <a class="btn btn-gold" href="{{ url_for('login') }}">Sign in</a>
+    </div>
 
-  <!-- Instead of an image, we add a clean text-based hero -->
-  <div class="bg-white p-6 rounded shadow-lg border text-center">
-    <h2 class="text-2xl font-semibold text-gray-800">FinTrix Banking Platform</h2>
-    <p class="text-gray-500 mt-2">
-      Fully cloud-based. Secure. Reliable. Built for speed.
-    </p>
-    <div class="mt-6">
-      <span class="inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded border border-blue-200 text-sm">
-        24/7 Access • Virtual Cards • Instant Transfers • Fraud Alerts
-      </span>
+    <div class="mt-6 small">
+      <strong>Highlights:</strong> Virtual cards • Scheduled transfers • CSV exports • Admin dashboard
     </div>
   </div>
 
-</div>
+  <div>
+    <div class="card-ghost">
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="h2">Account snapshot</div>
+          <div class="kv mt-2">Balance estimate • No real money</div>
+        </div>
+        <div class="text-right">
+          <div class="text-2xl font-bold">₹ 12,450</div>
+          <div class="small">Across all accounts</div>
+        </div>
+      </div>
 
+      <div class="mt-6 grid grid-cols-2 gap-3">
+        <div class="card">
+          <div class="kv">Checking</div>
+          <div class="font-bold">ACxxxxxxxx</div>
+          <div class="mt-2">₹ 8,200</div>
+        </div>
+
+        <div class="card">
+          <div class="kv">Savings</div>
+          <div class="font-bold">ACyyyyyyyy</div>
+          <div class="mt-2">₹ 4,250</div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <div class="small">Theme: Royal Purple & Satin Gold</div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
