@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="max-w-md mx-auto bg-white p-6 rounded shadow">
-  <h2 class="text-2xl mb-4">Login</h2>
-  <form method="post">
-    <label class="block mb-2">Email</label>
-    <input name="email" type="email" required class="w-full mb-3 p-2 border rounded">
-    <label class="block mb-2">Password</label>
-    <input name="password" type="password" required class="w-full mb-3 p-2 border rounded">
-    <button class="w-full bg-blue-600 text-white py-2 rounded">Login</button>
-  </form>
+<div class="max-w-md mx-auto">
+  <div class="card">
+    <h2 class="h2">Sign in</h2>
+    <p class="muted">Enter credentials to access demo banking dashboard.</p>
+
+    <form method="post" class="mt-4 space-y-3">
+      <label class="small">Email</label>
+      <input name="email" type="email" class="input" required>
+
+      <label class="small">Password</label>
+      <input name="password" type="password" class="input" required>
+
+      <button class="btn btn-primary w-full mt-2">Sign in</button>
+    </form>
+
+    <div class="mt-4 small">
+      Don't have an account? <a class="text-blue-600" href="{{ url_for('register') }}">Create one</a>
+    </div>
+  </div>
 </div>
 {% endblock %}
