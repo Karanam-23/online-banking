@@ -1,48 +1,57 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FinTrix — Online Banking</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FinTrix — Premium Banking</title>
+
+  <!-- Tailwind for utility wiring, but primary look driven by custom CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="/static/css/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-  <nav class="bg-white shadow">
-    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-
+  <nav class="nav">
+    <div class="container flex items-center justify-between py-4">
       <div class="flex items-center gap-3">
-        <span class="font-bold text-2xl text-blue-700 tracking-wide">FinTrix Bank</span>
+        <div class="nav-brand">FinTrix</div>
+        <div class="kv muted">Premium Banking</div>
       </div>
 
-      <div>
+      <div class="">
         {% if current_user.is_authenticated %}
-          <a href="{{ url_for('dashboard') }}" class="mr-4">Dashboard</a>
-          <a href="{{ url_for('transactions') }}" class="mr-4">Transactions</a>
-          <a href="{{ url_for('transfer') }}" class="mr-4">Transfer</a>
-          <a href="{{ url_for('virtual_card') }}" class="mr-4">Virtual Card</a>
-          <a href="{{ url_for('logout') }}" class="text-red-600">Logout</a>
+          <a class="mr-4 muted" href="{{ url_for('dashboard') }}">Dashboard</a>
+          <a class="mr-4 muted" href="{{ url_for('transactions') }}">Transactions</a>
+          <a class="mr-4 muted" href="{{ url_for('transfer') }}">Transfer</a>
+          <a class="mr-4 muted" href="{{ url_for('virtual_card') }}">Cards</a>
+          <a class="text-red-600" href="{{ url_for('logout') }}">Logout</a>
         {% else %}
-          <a href="{{ url_for('login') }}" class="mr-4">Login</a>
-          <a href="{{ url_for('register') }}" class="bg-blue-600 text-white px-3 py-1 rounded">Sign up</a>
+          <a class="mr-4 muted" href="{{ url_for('login') }}">Login</a>
+          <a class="btn btn-primary" href="{{ url_for('register') }}">Get started</a>
         {% endif %}
       </div>
     </div>
   </nav>
 
-  <main class="container mx-auto px-4 py-8">
+  <main class="container py-10">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
+        <div class="mb-6">
         {% for cat, msg in messages %}
-          <div class="mb-4 p-3 rounded {{ 'bg-green-100' if cat=='success' else 'bg-red-100' }}">{{ msg }}</div>
+          <div class="{{ 'alert-success' if cat=='success' else 'alert-danger' }}">{{ msg }}</div>
         {% endfor %}
+        </div>
       {% endif %}
     {% endwith %}
-    
+
     {% block content %}{% endblock %}
   </main>
+
+  <footer class="footer container center">
+    <div>©2025 Created For CSA1509 Course .</div>
+  </footer>
 
 </body>
 </html>
